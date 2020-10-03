@@ -1,0 +1,41 @@
+********************RS CALCULATION*****************
+Rs and Rl form a voltage divider
+Rl = 5kOhm
+Rs = (20 - 20k) = ?
+V0 = Voltage from A0 pin, it represents the voltage of Rl in 
+the divider
+
+V0 = Rl * Vcc / (Rs + Rl)
+
+V0*Rs + V0*Rl = Rl * Vcc
+Rs = Rl*(Vcc - V0) / V0 
+
+
+
+**********************ppm calculation*******************
+
+
+//since a straight line on a log scale is not truly a straight
+//line in linear scale, we must calculate the real values
+
+
+p0_in_log_scale = (200, 2.9)
+p1_in_log_scale = (10000, 0.66)
+
+p0 = (2.3, 0.462) //power of 10
+p1 = (4, -0.18)
+
+y - y1 = ((y2 - y1) / (x2 - x1)) * (x - x1)
+
+slope = (y2 - y1) / (x2 - x1) = -0.378
+-----------------------------------------------
+Yn = Rs / R0 (we must convert this for the linear equation)
+yn = log10(Yn)
+
+(y0 - yn) / slope = x0 - xn
+xn = x0 - ((y0 - yn) / slope) //position on a straight line
+
+Xn = 10^(xn) //result in ppm
+
+Xn = 10 ^ ((x0 - ((y0 - yn) / slope))
+
